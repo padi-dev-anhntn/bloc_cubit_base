@@ -77,7 +77,7 @@ class _MyAppState extends State<MyApp> {
               child: MaterialApp.router(
                 title: AppConfigs.appName,
                 theme: AppThemes(
-                  isDarkMode: false,
+                  isDarkMode: true,
                   primaryColor: state.primaryColor,
                 ).theme,
                 themeMode: state.themeMode,

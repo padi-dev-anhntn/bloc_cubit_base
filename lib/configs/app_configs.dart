@@ -5,7 +5,7 @@ import 'app_env_config.dart';
 class AppConfigs {
   AppConfigs._();
   static const String appName = "Bloc cubit base";
-  static Environment env = Environment.prod;
+  static Environment env = Environment.dev;
 
   ///API Env
   static String get baseUrl => env.baseUrl;
@@ -16,8 +16,10 @@ class AppConfigs {
 
   ///Local
   static const appLocal = 'vi_VN';
-  static const appLanguage = 'vi';
-  static const defaultLocal = Locale.fromSubtags(languageCode: appLanguage);
+  static const appLanguageVi = 'vi';
+  static const defaultLocal = Locale.fromSubtags(languageCode: appLanguageVi);
+  static const localEn = Locale.fromSubtags(languageCode: 'en');
+  static const localJa = Locale.fromSubtags(languageCode: 'ja');
 
   ///DateFormat
   static const dateDisplayFormat = 'dd/MM/yyyy';

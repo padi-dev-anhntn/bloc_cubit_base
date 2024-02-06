@@ -1,10 +1,4 @@
 class AppImages {
   /// Common
   static const bgImagePlaceholder = 'assets/images/smartphone.png';
-  static const icLogoTransparent = 'assets/images/ic_logo_transparent.png';
-  static const icAvatar = 'assets/images/ic_avatar.png';
-
-  ///Sign-In
-  static const icEyeClose = 'assets/images/ic_eye_close.png';
-  static const icEyeOpen = 'assets/images/ic_eye_open.png';
 }

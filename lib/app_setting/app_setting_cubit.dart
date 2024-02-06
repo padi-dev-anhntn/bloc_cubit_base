@@ -24,5 +24,4 @@ class AppSettingCubit extends Cubit<AppSettingState>  {
   void changeLocal({required Locale locale}) {
     emit(state.copyWith(locale: locale));
   }
-
 }

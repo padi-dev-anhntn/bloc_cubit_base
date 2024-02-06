@@ -1,5 +1,7 @@
+import 'package:bloc_cubit_base/constants/route_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'splash_cubit.dart';
 
 class SplashArguments {
@@ -57,7 +59,19 @@ class _SplashChildPageState extends State<SplashChildPage> {
   }
 
   Widget _buildBodyWidget() {
-    return Container();
+    return Center(
+      child: Column(
+        children: [
+          const Text('splash'),
+          TextButton(
+            onPressed: () {
+              GoRouter.of(context).goNamed(AppRouter.login);
+            },
+            child: const Text('go to login page'),
+          )
+        ],
+      ),
+    );
   }
 
   @override
