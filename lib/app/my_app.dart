@@ -70,7 +70,7 @@ class _MyAppState extends State<MyApp> {
         ],
         child: BlocBuilder<AppSettingCubit, AppSettingState>(
           builder: (context, state) {
-            bool isDarkMode = context.read<AppSettingCubit>().state.themeMode == ThemeMode.dark;
+            bool isDarkMode = state.themeMode == ThemeMode.dark;
             return GestureDetector(
               onTap: () {
                 _hideKeyboard(context);
@@ -81,7 +81,6 @@ class _MyAppState extends State<MyApp> {
                   isDarkMode: isDarkMode,
                   primaryColor: state.primaryColor,
                 ).theme,
-                themeMode: state.themeMode,
                 routerConfig: AppRouter.router,
                 localizationsDelegates: const [
                   GlobalMaterialLocalizations.delegate,
