@@ -65,6 +65,8 @@ class _LoginChildPageState extends State<LoginChildPage> {
   Widget _buildBodyWidget() {
     return BlocBuilder<AppSettingCubit, AppSettingState>(
       buildWhen: (prev, current) {
+        print("before: ${prev.themeMode} - ${prev.locale}");
+        print("after: ${current.themeMode} - ${current.locale}");
         return prev.themeMode != current.themeMode ||
             (prev.locale != current.locale);
       },
@@ -110,7 +112,7 @@ class _LoginChildPageState extends State<LoginChildPage> {
             Column(
               children: [
                 const Text('Language'),
-                Text(AppLocalizations.of(context).getStarted),
+                Text(AppLocalizations.of(context)!.getStarted),
                 RadioListTile(
                   title: const Text('En'),
                   value: AppConfigs.localEn,
