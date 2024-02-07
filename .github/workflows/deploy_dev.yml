@@ -6,7 +6,7 @@ name: Build for dev(ios・android)
 on:
   # Triggers the workflow on push or pull request events but only for the develop branch
   push:
-    branches: 
+    branches:
       - 'develop/**'
 
   # Allows you to run this workflow manually from the Actions tab
@@ -53,11 +53,21 @@ jobs:
 
 
       #     # apply provisioning profile
-  
+
 
       - name: make apk
         run: flutter build apk --release --flavor dev --target=lib/main.dart --build-number=${GITHUB_RUN_NUMBER}
-      
+      - name: upload apk to deploygate
+        run: |
+          curl \
+            -H "Authorization: Bearer deploygate_xusr_B7bjuV8i9ObaGpHqmLAQYlkNox5Sfb_0dWKn3" \
+            -X POST \
+            -F "distribution_name=$GIT_BRANCH" \
+            -F "release_note=new androdi build" \
+            -F "file=@/Users/runner/work/kochi_bus_photo_app/kochi_bus_photo_app/build/ios/ipa/xxxxxxxxxx_app.ipa" \
+            --form-string "message=sample"
+            "https://deploygate.com/api/users/anhntn/apps"
+
       # - name: make ipa
       #   run: flutter build ipa --release --flavor dev --target=lib/main-development.dart --export-options-plist=tools/dev/ExportOptions.plist --build-number=${GITHUB_RUN_NUMBER}
 
