@@ -28,6 +28,9 @@ jobs:
       - name: Show Xcode version
         run: xcodebuild -version
 
+      - run: git update-index --chmod=+x ./.github/scripts/backend_decrypt.sh
+
+
       - name: "Install Flutter"
         run: ./.github/workflows/scripts/install-flutter.sh 3.16.2
 
