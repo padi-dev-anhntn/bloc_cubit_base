@@ -64,8 +64,8 @@ jobs:
             -X POST \
             -F "distribution_name=$GIT_BRANCH" \
             -F "release_note=new androdi build" \
-            -F "file=@/Users/runner/work/kochi_bus_photo_app/kochi_bus_photo_app/build/ios/ipa/xxxxxxxxxx_app.ipa" \
-            --form-string "message=sample"
+            -F "file=@/Users/Wb/Desktop/bloc_cubit_base/build/app/outputs/flutter-apk/app-dev-release.apk" \
+            --form-string "message=build apk"
             "https://deploygate.com/api/users/anhntn/apps"
 
       # - name: make ipa

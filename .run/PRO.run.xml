@@ -1,7 +1,7 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="PRO" type="FlutterRunConfigurationType" factoryName="Flutter">
     <option name="additionalArgs" value="--flavor prod" />
-    <option name="filePath" value="$PROJECT_DIR$/lib/main.prod.dart" />
+    <option name="filePath" value="$PROJECT_DIR$/lib/main-prod.dart" />
     <method v="2" />
   </configuration>
 </component>
