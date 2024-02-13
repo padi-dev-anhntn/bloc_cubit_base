@@ -69,12 +69,12 @@ jobs:
         run: |
           curl \
             --url "https://deploygate.com/api/users/anhntn/apps" \
-            -H "Authorization: Bearer deploygate_xusr_B7bjuV8i9ObaGpHqmLAQYlkNox5Sfb_0dWKn3" \
+            -H "Authorization: Bearer deploygate_xgrp_JAqyqvWPuF1cag0Tdr8x0wUfpngc87_2lneIM" \
             -X POST \
-            -F "distribution_name=$GIT_BRANCH" \
-            -F "release_note=new androdi build" \
             -F "file=@/build/app/outputs/flutter-apk/app-dev-release.apk" \
-            --form-string "message=build apk"
+              --form-string "message=git:${GIT_HASH}" \
+              --form-string "distribution_name=${GIT_BRANCH}" \
+              --form-string "release_note=new build"
       # - name: make ipa
       #   run: flutter build ipa --release --flavor dev --target=lib/main-development.dart --export-options-plist=tools/dev/ExportOptions.plist --build-number=${GITHUB_RUN_NUMBER}
 
