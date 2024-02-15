@@ -65,8 +65,9 @@ jobs:
 
       - name: make apk
         run: flutter build apk --release --flavor dev --target=lib/main.dart --build-number=${GITHUB_RUN_NUMBER}
-      - name: Upload apk file
-        uses: actions/upload-artifact@v1
+      - name: Upload apk file to artifact
+        run: mkdir -p build/app/outputs/flutter-apk
+        uses: actions/upload-artifact@v4
         with:
           name: apk
           path: /build/app/outputs/flutter-apk/app-dev-release.apk
@@ -76,7 +77,7 @@ jobs:
             --url "https://deploygate.com/api/users/anhntn/apps" \
             -H "Authorization: Bearer deploygate_xgrp_JAqyqvWPuF1cag0Tdr8x0wUfpngc87_2lneIM" \
             -X POST \
-            -F file==@/Users/runner/work/bloc_cubit_base/build/app/outputs/flutter-apk/app-dev-release.apk \
+            -F file=@/build/app/outputs/flutter-apk/app-dev-release.apk \
               --form-string "message=git:${GIT_HASH}" \
               --form-string "distribution_name=${GIT_BRANCH}" \
               --form-string "release_note=new build"
