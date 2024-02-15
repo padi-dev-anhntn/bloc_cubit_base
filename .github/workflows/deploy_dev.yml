@@ -75,7 +75,7 @@ jobs:
             --url "https://deploygate.com/api/users/anhntn/apps" \
             -H "Authorization: Bearer deploygate_xusr_B7bjuV8i9ObaGpHqmLAQYlkNox5Sfb_0dWKn3" \
             -X POST \
-            -F "file=build/app/outputs/flutter-apk/app-dev-release.apk"
+            -F "file=@build/app/outputs/flutter-apk/app-dev-release.apk"
             --form-string "message=git:${GIT_HASH}" \
             --form-string "distribution_name=${GIT_BRANCH}" \
             --form-string "release_note=new build"
