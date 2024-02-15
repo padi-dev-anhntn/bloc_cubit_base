@@ -65,8 +65,9 @@ jobs:
 
       - name: make apk
         run: flutter build apk --release --flavor dev --target=lib/main.dart --build-number=${GITHUB_RUN_NUMBER}
-      - name: Upload apk file to artifact
+      - name: Make dir
         run: mkdir -p build/app/outputs/flutter-apk
+      - name: Upload apk file to artifact
         uses: actions/upload-artifact@v4
         with:
           name: apk
