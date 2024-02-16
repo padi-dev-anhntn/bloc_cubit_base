@@ -65,8 +65,6 @@ class _LoginChildPageState extends State<LoginChildPage> {
   Widget _buildBodyWidget() {
     return BlocBuilder<AppSettingCubit, AppSettingState>(
       buildWhen: (prev, current) {
-        print("before: ${prev.themeMode} - ${prev.locale}");
-        print("after: ${current.themeMode} - ${current.locale}");
         return prev.themeMode != current.themeMode ||
             (prev.locale != current.locale);
       },
