@@ -10,6 +10,7 @@ class AppConfigs {
   ///API Env
   static String get baseUrl => env.baseUrl;
   static String get envName => env.envName;
+  static String get httpGraphQLServiceLink => env.httpGraphQLServiceLink;
 
   ///Paging
   static const pageSize = 10;

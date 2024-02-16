@@ -26,4 +26,15 @@ extension EnvironmentExt on Environment {
         return "stg";
     }
   }
+
+  String get httpGraphQLServiceLink {
+    switch(this) {
+      case Environment.dev:
+        return "https://api.dev.live.boosty.app/graphiql";
+      case Environment.stg:
+        return "https://api.stg.live.boosty.app/graphiql";
+      case Environment.prod:
+        return "stg";
+    }
+  }
 }
