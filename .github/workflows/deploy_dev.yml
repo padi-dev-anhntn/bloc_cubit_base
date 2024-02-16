@@ -1,0 +1,87 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Build for dev(ios・android)
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the develop branch
+  push:
+    branches:
+      - 'develop/**'
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: macos-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - uses: actions/checkout@v2
+      - name: Select Xcode version 13.1
+        run: sudo xcode-select -s '/Applications/Xcode_13.1.app/Contents/Developer'
+
+      - name: Show Xcode version
+        run: xcodebuild -version
+
+      # Setup the flutter environment.
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: 'stable' # 'dev', 'alpha', default to: 'stable'
+          flutter-version: '3.16.2' # you can also specify exact version of flutter
+
+
+      - name: fix git 9148
+        run: git config --global url."https://".insteadOf git://
+
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v2
+
+      - run: flutter clean
+      - run: flutter gen-l10n
+      # Get flutter dependencies.
+      - run: flutter pub get
+
+      # - name: Install the Apple certificate and provisioning profile
+      #   run: |
+      #     # create variables
+
+      #     # create temporary keychain
+
+
+      #     # import certificate to keychain
+
+      #     # apply provisioning profile
+
+      - name: make apk
+        run: flutter build apk --release --flavor dev --target=lib/main.dart --build-number=${GITHUB_RUN_NUMBER}
+#      - name: Upload apk file to artifact
+#        uses: actions/upload-artifact@v4
+#        with:
+#          name: apk
+#          path: build/app/outputs/flutter-apk/app-dev-release.apk
+      - name: upload apk to deploygate
+        run: |
+          curl \
+            --url "https://deploygate.com/api/users/anhntn/apps" \
+            -H "Authorization: Bearer deploygate_xgrp_JAqyqvWPuF1cag0Tdr8x0wUfpngc87_2lneIM" \
+            -X POST \
+            -F "file=@build/app/outputs/flutter-apk/app-dev-release.apk" \
+            -F "message=git:${GIT_HASH}" \
+            -F "distribution_name=${GIT_BRANCH}" \
+            -F "release_note=new build"
+      # - name: make ipa
+      #   run: flutter build ipa --release --flavor dev --target=lib/main-development.dart --export-options-plist=tools/dev/ExportOptions.plist --build-number=${GITHUB_RUN_NUMBER}
+
+      # - name: make manifest
+      #   run: |
+      #     sed -i "" "s/GITHUB_RUN_NUMBER/${GITHUB_RUN_NUMBER}/g" tools/dev/manifest.plist
